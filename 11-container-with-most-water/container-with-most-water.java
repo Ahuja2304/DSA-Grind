@@ -1,17 +1,17 @@
 class Solution {
     public int maxArea(int[] height) {
         int n = height.length;
+        int rightPtr = n-1;
+        int leftPtr = 0;
         int maxArea = 0;
-        int rightptr = height.length-1;
-        int leftptr = 0;
-        while(leftptr<rightptr){
-            int currArea = (rightptr-leftptr)*(Math.min(height[leftptr],height[rightptr]));
+        while(rightPtr>leftPtr){
+            int currArea = Math.min(height[leftPtr],height[rightPtr])*(rightPtr-leftPtr);
             maxArea = Math.max(currArea,maxArea);
-            if(height[leftptr]<height[rightptr]){
-                leftptr++;
+            if(height[leftPtr]<height[rightPtr]){
+                leftPtr++;
             }
             else{
-                rightptr--;
+                rightPtr--;
             }
         }
         return maxArea;
